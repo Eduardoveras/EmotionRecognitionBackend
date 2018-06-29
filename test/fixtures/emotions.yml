@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  timeStamp: 9.99
+  facesCount: 1
+  appearance: 
+  emotions: 
+  expressions: 
+
+two:
+  timeStamp: 9.99
+  facesCount: 1
+  appearance: 
+  emotions: 
+  expressions: 
