@@ -1,6 +1,6 @@
 class EmotionChannel < ApplicationCable::Channel
   def subscribed
-    stream_from 'chat_channel'
+    stream_from 'emotion_channel'
   end
 
   def unsubscribed; end
@@ -9,7 +9,7 @@ class EmotionChannel < ApplicationCable::Channel
     Emotion.create(
       timeStamp: opts.fetch('timeStamp'),
       facesCount: opts.fetch('facesCount'),
-      appearence: opts.fetch('appearence'),
+      appearance: opts.fetch('appearance'),
       emotions: opts.fetch('emotions'),
       expressions: opts.fetch('expressions')
     )

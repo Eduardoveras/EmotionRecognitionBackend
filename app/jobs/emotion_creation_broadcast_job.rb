@@ -4,7 +4,7 @@ class ChatMessageCreationEventBroadcastJob < ApplicationJob
   def perform(emotion)
     ActionCable
         .server
-        .broadcast('chat_channel',
+        .broadcast('emotion_channel',
                    id: emotion.id,
                    created_at: emotion.created_at.strftime('%H:%M'),
                    appearance: emotion.appearance,
