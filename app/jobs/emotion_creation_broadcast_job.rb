@@ -7,10 +7,10 @@ class ChatMessageCreationEventBroadcastJob < ApplicationJob
         .broadcast('emotion_channel',
                    id: emotion.id,
                    created_at: emotion.created_at.strftime('%H:%M'),
-                   appearance: emotion.appearance,
+                   appearance: JSON.parse(emotion.appearance),
                    timeStamp: emotion.timeStamp,
                    facesCount: emotion.facesCount,
-                   emotions: emotion.emotions,
-                   expressions: emotion.expressions)
+                   emotions: JSON.parse(emotion.emotions),
+                   expressions: JSON.parse(emotion.expressions))
   end
 end

@@ -46,6 +46,6 @@ class EmotionsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def emotion_params
-      params.require(:emotion).permit(:timeStamp, :facesCount, :appearance, :emotions, :expressions)
+      params.require(:emotion).permit(:timeStamp, :facesCount, :appearance, :emotions, :expressions,:video_id)
     end
 end

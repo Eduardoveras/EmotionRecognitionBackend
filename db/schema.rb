@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_29_133237) do
+ActiveRecord::Schema.define(version: 2018_07_02_202424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,13 @@ ActiveRecord::Schema.define(version: 2018_06_29_133237) do
     t.jsonb "appearance"
     t.jsonb "emotions"
     t.jsonb "expressions"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "video_id"
+  end
+
+  create_table "face_video_analyses", force: :cascade do |t|
+    t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
