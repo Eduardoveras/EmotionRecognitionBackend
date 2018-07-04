@@ -7,6 +7,7 @@ class EmotionChannel < ApplicationCable::Channel
 
   def create(opts)
     Emotion.create(
+      video_id: opts.fetch('video_id'),
       timeStamp: opts.fetch('timeStamp'),
       facesCount: opts.fetch('facesCount'),
       appearance: opts.fetch('appearance'),
