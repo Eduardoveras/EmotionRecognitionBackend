@@ -53,3 +53,5 @@ node_modules/
 
 # RubyMine
 .idea/
+# Ignore application configuration
+/config/application.yml
