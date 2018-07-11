@@ -40,9 +40,9 @@ class EmotionsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_emotion
-      @emotion = Emotion.find(params[:id])
-    end
+  def set_emotion
+    @emotion = Emotion.where(video_id: params[:id])
+  end
 
     # Only allow a trusted parameter "white list" through.
     def emotion_params
