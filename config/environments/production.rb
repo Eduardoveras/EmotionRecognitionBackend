@@ -71,8 +71,7 @@ Rails.application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   # Actioncable, allow heroku URL
-  Rails.application.config.action_cable.allowed_request_origins = ['http://localhost:3000','https://sdec.herokuapp.com/']
-
+  config.action_cable.disable_request_forgery_protection = true
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
