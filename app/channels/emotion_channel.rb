@@ -12,7 +12,9 @@ class EmotionChannel < ApplicationCable::Channel
       facesCount: opts.fetch('facesCount'),
       appearance: opts.fetch('appearance'),
       emotions: opts.fetch('emotions'),
-      expressions: opts.fetch('expressions')
+      expressions: opts.fetch('expressions'),
+      measurements: opts.fetch('measurements'),
+      featurePoints: opts.fetch('featurePoints')
     )
   end
 end

@@ -45,7 +45,7 @@ Rails.application.configure do
   config.active_record.verbose_query_logs = true
 
   # Actioncable, allow heroku URL
-  Rails.application.config.action_cable.allowed_request_origins = ['http://localhost:3000','https://sdec.herokuapp.com/']
+  Rails.application.config.action_cable.allowed_request_origins = ['http://localhost:3000','https://sdec.herokuapp.com/','http://localhost:8080']
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true

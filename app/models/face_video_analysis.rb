@@ -23,6 +23,15 @@ class FaceVideoAnalysis < ApplicationRecord
     end
   end
 
+  def positive_emotion
+    frames = get_all_frames
+    hash = JSON.parse frames
+        .where("(emotions->>'joy')::float > -1")
+        .select("AVG(emotions.id), AVG((emotions->>'joy')::float)").to_json
+    final_thing = hash.first.deep_symbolize_keys
+    final_thing[:avg]
+  end
+
   private
 
   def get_all_frames

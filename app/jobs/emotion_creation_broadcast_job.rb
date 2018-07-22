@@ -12,6 +12,8 @@ class ChatMessageCreationEventBroadcastJob < ApplicationJob
                    facesCount: emotion.facesCount,
                    emotions: JSON.parse(emotion.emotions),
                    expressions: JSON.parse(emotion.expressions),
-                   video_id: emotion.video_id)
+                   video_id: emotion.video_id,
+                   measurements: JSON.parse(emotion.measurements),
+                   featurePoints: JSON.parse(emotion.featurePoints))
   end
 end
