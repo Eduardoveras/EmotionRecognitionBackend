@@ -1,5 +1,5 @@
 class FaceVideoAnalysesController < ApplicationController
-  before_action :set_face_video_analysis, only: [:show, :update, :destroy]
+  before_action :set_face_video_analysis, only: [:show, :update, :destroy, :add_video, :get_video]
 
   # GET /face_video_analyses
   def index
@@ -35,17 +35,28 @@ class FaceVideoAnalysesController < ApplicationController
 
   # DELETE /face_video_analyses/1
   def destroy
+    Emotion.where(:video_id => @face_video_analysis.id).destroy_all
     @face_video_analysis.destroy
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_face_video_analysis
-      @face_video_analysis = FaceVideoAnalysis.find(params[:id])
-    end
+  def add_video
+    @face_video_analysis.video_base64 = params[:video_file]
+    @face_video_analysis.save!
+  end
 
-    # Only allow a trusted parameter "white list" through.
-    def face_video_analysis_params
-      params.require(:face_video_analysis).permit(:notes)
-    end
+  def get_video
+    render json: @face_video_analysis.video_base64.html_safe
+  end
+
+  private
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_face_video_analysis
+    @face_video_analysis = FaceVideoAnalysis.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def face_video_analysis_params
+    params.require(:face_video_analysis).permit(:notes)
+  end
 end
