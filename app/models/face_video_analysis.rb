@@ -1,4 +1,5 @@
 class FaceVideoAnalysis < ApplicationRecord
+  belongs_to :case, optional: true
 
   def average_gender
     frames = get_all_frames
