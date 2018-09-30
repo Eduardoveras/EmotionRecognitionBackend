@@ -10,13 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_24_150312) do
+ActiveRecord::Schema.define(version: 2018_09_28_150751) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "cases", force: :cascade do |t|
     t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "criminals", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -40,7 +46,9 @@ ActiveRecord::Schema.define(version: 2018_09_24_150312) do
     t.datetime "updated_at", null: false
     t.text "video_base64"
     t.bigint "case_id"
+    t.bigint "criminal_id"
     t.index ["case_id"], name: "index_face_video_analyses_on_case_id"
+    t.index ["criminal_id"], name: "index_face_video_analyses_on_criminal_id"
   end
 
 end

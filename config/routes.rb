@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :criminals
   resources :cases
   resources :face_video_analyses
   root to: 'emotions#index'
