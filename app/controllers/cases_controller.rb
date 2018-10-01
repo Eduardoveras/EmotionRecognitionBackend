@@ -10,7 +10,9 @@ class CasesController < ApplicationController
 
   # GET /cases/1
   def show
-    render json: @case.to_json(:include => :face_video_analysis)
+    #render json: @case.to_json(:include => :face_video_analysis)
+    render json: @case.to_json(include: {face_video_analysis: {include: :criminal} })
+
   end
 
   # POST /cases

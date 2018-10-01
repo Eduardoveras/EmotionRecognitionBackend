@@ -1,5 +1,6 @@
 class FaceVideoAnalysis < ApplicationRecord
   belongs_to :case, optional: true
+  belongs_to :criminal, optional: true
 
   def average_gender
     frames = get_all_frames
