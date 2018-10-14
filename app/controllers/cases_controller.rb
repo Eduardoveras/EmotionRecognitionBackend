@@ -3,7 +3,7 @@ class CasesController < ApplicationController
 
   # GET /cases
   def index
-    @cases = Case.all
+    @cases = Case.where(enabled:true)
 
     render json: @cases
   end
@@ -48,6 +48,6 @@ class CasesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def case_params
-      params.require(:case).permit(:face_video_analysis_id, :notes)
+      params.require(:case).permit(:face_video_analysis_id, :notes,:enabled)
     end
 end

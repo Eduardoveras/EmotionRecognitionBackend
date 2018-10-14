@@ -3,14 +3,14 @@ class FaceVideoAnalysesController < ApplicationController
 
   # GET /face_video_analyses
   def index
-    @face_video_analyses = FaceVideoAnalysis.all
+    @face_video_analyses = FaceVideoAnalysis.where(enabled:true)
 
     render json: @face_video_analyses
   end
 
   # GET /face_video_analyses/1
   def show
-    render json: @face_video_analysis
+    render json: @face_video_analysis.to_json(include: :criminal)
   end
 
   # POST /face_video_analyses
@@ -57,6 +57,6 @@ class FaceVideoAnalysesController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def face_video_analysis_params
-    params.require(:face_video_analysis).permit(:notes,:case_id,:criminal_id)
+    params.require(:face_video_analysis).permit(:notes,:case_id,:criminal_id,:enabled)
   end
 end
