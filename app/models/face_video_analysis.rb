@@ -1,5 +1,5 @@
 class FaceVideoAnalysis < ApplicationRecord
-  attr_accessor :enabled
+  #attr_accessor :enabled
   belongs_to :case, optional: true
   belongs_to :criminal, optional: true
 
