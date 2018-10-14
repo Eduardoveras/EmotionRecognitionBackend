@@ -3,7 +3,7 @@ class CasesController < ApplicationController
 
   # GET /cases
   def index
-    @cases = Case.where(enabled:true)
+    @cases = Case.where(enabled: true)
 
     render json: @cases
   end
@@ -28,12 +28,12 @@ class CasesController < ApplicationController
 
   # PATCH/PUT /cases/1
   def update
-    if @case.update(case_params)
-      render json: @case
-    else
-      render json: @case.errors, status: :unprocessable_entity
-    end
+  if @case.update(case_params)
+    render json: @case
+  else
+    render json: @case.errors, status: :unprocessable_entity
   end
+end
 
   # DELETE /cases/1
   def destroy
