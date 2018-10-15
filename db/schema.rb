@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_02_183537) do
+ActiveRecord::Schema.define(version: 2018_10_15_002840) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,18 @@ ActiveRecord::Schema.define(version: 2018_10_02_183537) do
     t.boolean "enabled", default: true
     t.index ["case_id"], name: "index_face_video_analyses_on_case_id"
     t.index ["criminal_id"], name: "index_face_video_analyses_on_criminal_id"
+  end
+
+  create_table "settings", force: :cascade do |t|
+    t.boolean "joy_enabled"
+    t.boolean "sadness_enabled"
+    t.boolean "anger_enabled"
+    t.boolean "fear_enabled"
+    t.boolean "surprise_enabled"
+    t.boolean "contempt_enabled"
+    t.boolean "disgust_enabled"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

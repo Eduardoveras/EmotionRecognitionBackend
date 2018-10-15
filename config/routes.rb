@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :settings
   resources :criminals
   resources :cases
   resources :face_video_analyses

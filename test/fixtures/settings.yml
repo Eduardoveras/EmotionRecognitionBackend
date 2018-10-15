@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  joy_enabled: false
+  sadness_enabled: false
+  anger_enabled: false
+  fear_enabled: false
+  surprise_enabled: false
+  contempt_enabled: false
+  disgust_enabled: false
+
+two:
+  joy_enabled: false
+  sadness_enabled: false
+  anger_enabled: false
+  fear_enabled: false
+  surprise_enabled: false
+  contempt_enabled: false
+  disgust_enabled: false
