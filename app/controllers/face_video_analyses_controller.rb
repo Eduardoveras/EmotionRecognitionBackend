@@ -53,6 +53,8 @@ class FaceVideoAnalysesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_face_video_analysis
     @face_video_analysis = FaceVideoAnalysis.find(params[:id])
+    @face_video_analysis.set_summary_data
+    @face_video_analysis.save!
   end
 
   # Only allow a trusted parameter "white list" through.
