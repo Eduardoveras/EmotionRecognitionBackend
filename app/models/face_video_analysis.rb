@@ -72,11 +72,30 @@ class FaceVideoAnalysis < ApplicationRecord
 
   def positive_emotion
     frames = get_all_frames
-    hash = JSON.parse frames
-        .where("(emotions->>'joy')::float > -1")
-        .select("AVG(emotions.id), AVG((emotions->>'joy')::float)").to_json
-    final_thing = hash.first.deep_symbolize_keys
-    final_thing[:avg]
+    total_positive=0
+    total_negative=0
+    total_frames=frames.count
+    frames.each do |frame|
+      total_positive+= Float(frame.emotions['joy'])
+      total_negative+= Float(frame.emotions['fear'])
+      total_negative+= Float(frame.emotions['anger'])
+      total_negative+= Float(frame.emotions['disgust'])
+      total_negative+= Float(frame.emotions['sadness'])
+      total_negative+= Float(frame.emotions['contempt'])
+      total_positive+= Float(frame.emotions['surprise'])
+    end
+    if total_frames>0
+      (total_positive)/(total_negative)
+    else
+      ""
+
+    end
+  end
+
+  def get_duration
+    puts get_all_frames.last.timeStamp
+    get_all_frames.last.timeStamp
+
   end
 
   def set_summary_data
@@ -86,6 +105,7 @@ class FaceVideoAnalysis < ApplicationRecord
     self.dominant_emotion=""
     self.emotions_percentage = get_average_emotions
     #self.notable_moments
+    self.duration= get_duration
   end
 
   private

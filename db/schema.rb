@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_28_201532) do
+ActiveRecord::Schema.define(version: 2018_10_29_195130) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 2018_10_28_201532) do
     t.text "emotion_trend"
     t.text "emotions_percentage", default: [], array: true
     t.text "notable_moments", default: [], array: true
+    t.text "duration"
     t.index ["case_id"], name: "index_face_video_analyses_on_case_id"
     t.index ["criminal_id"], name: "index_face_video_analyses_on_criminal_id"
   end
