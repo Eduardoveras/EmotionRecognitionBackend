@@ -49,8 +49,34 @@ class FaceVideoAnalysis < ApplicationRecord
       total_contempt+= Float(frame.emotions['contempt'])
       total_surprise+= Float(frame.emotions['surprise'])
       total_engagement+= Float(frame.emotions['engagement'])
-      puts total_joy
     end
+
+
+    case [total_joy,
+          total_fear,
+          total_anger,
+          total_disgust,
+          total_sadness,
+          total_contempt,
+          total_surprise].max
+    when total_joy
+      self.dominant_emotion="Felicidad"
+    when total_fear
+      self.dominant_emotion="Miedo"
+    when total_anger
+      self.dominant_emotion="Enojo"
+    when total_disgust
+      self.dominant_emotion="Asco"
+    when total_sadness
+      self.dominant_emotion="Tristesa"
+    when total_contempt
+      self.dominant_emotion="Desprecio"
+    when total_surprise
+      self.dominant_emotion="Sorpresa"
+    else
+      "You gave me #{x} -- I have no idea what to do with that."
+    end
+
     if total_frames>0
       [(total_joy/total_frames).round(3),
        (total_fear/total_frames).round(3),
@@ -68,6 +94,64 @@ class FaceVideoAnalysis < ApplicationRecord
 
 
   end
+
+  def get_notable_moments
+    frames = get_all_frames
+    main_emotions=[]
+    current_emotions=[]
+    self.notable_moments=[]
+    frames.each do |frame|
+
+      main_emotions= [Float(frame.emotions['joy']),
+      Float(frame.emotions['fear']), Float(frame.emotions['anger']),
+      Float(frame.emotions['disgust']), Float(frame.emotions['sadness']),
+      Float(frame.emotions['valence']), Float(frame.emotions['contempt']),
+      Float(frame.emotions['surprise']), Float(frame.emotions['engagement'])].sort.last(2)
+
+
+
+      if main_emotions[0]>30 and main_emotions[1] >30
+      working_emotion=[]
+      main_emotions.each do |emotion|
+
+        if emotion == Float(frame.emotions['fear'])
+          working_emotion.push('fear')
+        end
+        if emotion == Float(frame.emotions['anger'])
+          working_emotion.push('anger')
+        end
+        if emotion == Float(frame.emotions['disgust'])
+          working_emotion.push('disgust')
+        end
+        if emotion == Float(frame.emotions['sadness'])
+          working_emotion.push('sadness')
+        end
+        if emotion == Float(frame.emotions['joy'])
+          working_emotion.push('joy')
+        end
+        if emotion == Float(frame.emotions['contempt'])
+          working_emotion.push('contempt')
+        end
+        if emotion == Float(frame.emotions['surprise'])
+          working_emotion.push('surprise')
+        end
+      end
+
+      if current_emotions != working_emotion
+        self.notable_moments.push("Se detectaron multiples emociones dominantes en "+Time.at(frame.timeStamp).strftime("%M:%S "))
+      end
+      current_emotions=working_emotion
+
+
+
+
+      end
+
+
+    end
+
+  end
+
 
 
   def positive_emotion
@@ -102,9 +186,8 @@ class FaceVideoAnalysis < ApplicationRecord
     self.average_gender=get_average_gender
     self.average_age=get_average_age
     self.emotion_trend= positive_emotion
-    self.dominant_emotion=""
     self.emotions_percentage = get_average_emotions
-    #self.notable_moments
+    get_notable_moments
     self.duration= get_duration
   end
 
