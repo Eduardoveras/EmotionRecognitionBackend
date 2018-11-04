@@ -51,7 +51,6 @@ class FaceVideoAnalysis < ApplicationRecord
       total_engagement+= Float(frame.emotions['engagement'])
     end
 
-
     case [total_joy,
           total_fear,
           total_anger,
@@ -66,13 +65,38 @@ class FaceVideoAnalysis < ApplicationRecord
     when total_anger
       self.dominant_emotion="Enojo"
     when total_disgust
-      self.dominant_emotion="Asco"
+      self.dominant_emotion="Disgusto"
     when total_sadness
-      self.dominant_emotion="Tristesa"
+      self.dominant_emotion="Tristeza"
     when total_contempt
       self.dominant_emotion="Desprecio"
     when total_surprise
       self.dominant_emotion="Sorpresa"
+    else
+      "You gave me #{x} -- I have no idea what to do with that."
+    end
+
+    case [total_joy,
+          total_fear,
+          total_anger,
+          total_disgust,
+          total_sadness,
+          total_contempt,
+          total_surprise].min
+    when total_joy
+      self.lesser_emotion="Felicidad"
+    when total_fear
+      self.lesser_emotion="Miedo"
+    when total_anger
+      self.lesser_emotion="Enojo"
+    when total_disgust
+      self.lesser_emotion="Disgusto"
+    when total_sadness
+      self.lesser_emotion="Tristeza"
+    when total_contempt
+      self.lesser_emotion="Desprecio"
+    when total_surprise
+      self.lesser_emotion="Sorpresa"
     else
       "You gave me #{x} -- I have no idea what to do with that."
     end

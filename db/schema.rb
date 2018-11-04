@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 2018_10_29_195130) do
     t.text "average_age"
     t.text "average_gender"
     t.text "dominant_emotion"
+    t.text "lesser_emotion"
     t.text "emotion_trend"
     t.text "emotions_percentage", default: [], array: true
     t.text "notable_moments", default: [], array: true
