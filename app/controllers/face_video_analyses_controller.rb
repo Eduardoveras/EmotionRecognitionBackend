@@ -5,7 +5,7 @@ class FaceVideoAnalysesController < ApplicationController
   def index
     @face_video_analyses = FaceVideoAnalysis.where(enabled:true)
 
-    render json: @face_video_analyses
+    render json: @face_video_analyses.to_json(include: :criminal)
   end
 
   # GET /face_video_analyses/1
