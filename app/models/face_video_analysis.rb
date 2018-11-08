@@ -201,9 +201,11 @@ class FaceVideoAnalysis < ApplicationRecord
   end
 
   def get_duration
-    puts get_all_frames.last.timeStamp
-    get_all_frames.last.timeStamp
-
+    if get_all_frames.count >0
+      get_all_frames.last.timeStamp
+    else
+      0
+    end
   end
 
   def set_summary_data
@@ -212,7 +214,13 @@ class FaceVideoAnalysis < ApplicationRecord
     self.emotion_trend= positive_emotion
     self.emotions_percentage = get_average_emotions
     get_notable_moments
-    self.duration= get_duration
+
+    if get_duration >0
+      self.duration= get_duration
+    else
+      self.destroy!
+    end
+
   end
 
   private

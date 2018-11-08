@@ -25,3 +25,8 @@ ensure
   puts "Seeding done, goodbye."
 end
 
+
+FaceVideoAnalysis.all.each do |thing|
+  thing.set_summary_data
+  thing.save!
+  end
