@@ -193,10 +193,9 @@ class FaceVideoAnalysis < ApplicationRecord
       total_positive+= Float(frame.emotions['surprise'])
     end
     if total_frames>0
-      (total_positive)/(total_negative)
+      "es "+(((total_positive)/(total_positive+total_negative))*100).round(2).to_s+"% positivo y "+(((total_negative)/(total_positive+total_negative))*100).round(2).to_s+"% negativo"
     else
-      ""
-
+      "es desconocido"
     end
   end
 
