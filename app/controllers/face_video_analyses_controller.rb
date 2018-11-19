@@ -10,7 +10,14 @@ class FaceVideoAnalysesController < ApplicationController
 
   # GET /face_video_analyses/1
   def show
+    @face_video_analysis.set_summary_data
+    @face_video_analysis.save!
     render json: @face_video_analysis.to_json(include: :criminal)
+  end
+
+  def show_emotions_percentage
+    @face_video_analyses = FaceVideoAnalysis.where(enabled:true)
+    render json: @face_video_analyses, :except =>  [:criminal_id, :enabled, :case_id, :notes,:video_base64,:created_at,:updated_at,:average_age,:average_gender,:notable_moments,:duration]
   end
 
   # POST /face_video_analyses
@@ -53,8 +60,6 @@ class FaceVideoAnalysesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_face_video_analysis
     @face_video_analysis = FaceVideoAnalysis.find(params[:id])
-    @face_video_analysis.set_summary_data
-    @face_video_analysis.save!
   end
 
   # Only allow a trusted parameter "white list" through.

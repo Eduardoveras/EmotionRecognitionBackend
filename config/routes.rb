@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :emotions
   post '/add_video/:id', to: 'face_video_analyses#add_video'
   get '/get_video/:id', to: 'face_video_analyses#get_video'
+  get '/all_emotions', to: 'face_video_analyses#show_emotions_percentage'
 
   mount ActionCable.server => '/cable'
 
