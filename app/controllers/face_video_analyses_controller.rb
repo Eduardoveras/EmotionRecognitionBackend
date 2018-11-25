@@ -24,7 +24,7 @@ class FaceVideoAnalysesController < ApplicationController
   end
 
   def show_emotions_percentage
-    @face_video_analyses = FaceVideoAnalysis.where(enabled:true)
+    @face_video_analyses = FaceVideoAnalysis.all
     render json: @face_video_analyses, :except =>  [:criminal_id, :enabled, :case_id, :notes,:video_base64,:created_at,:updated_at,:average_age,:average_gender,:notable_moments,:duration]
   end
 
