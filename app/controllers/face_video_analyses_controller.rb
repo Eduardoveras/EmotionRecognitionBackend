@@ -1,5 +1,5 @@
 class FaceVideoAnalysesController < ApplicationController
-  before_action :set_face_video_analysis, only: [:show, :update, :destroy, :add_video, :get_video]
+  before_action :set_face_video_analysis, only: [:show, :update, :destroy, :add_video, :get_video, :add_logs]
 
   # GET /face_video_analyses
   def index
@@ -13,6 +13,14 @@ class FaceVideoAnalysesController < ApplicationController
     @face_video_analysis.set_summary_data
     @face_video_analysis.save!
     render json: @face_video_analysis.to_json(include: :criminal)
+  end
+
+  # POST /add_logs/1
+  def add_logs
+    puts @face_video_analysis
+    puts face_video_analysis_params
+    @face_video_analysis.logs << face_video_analysis_params[:logs]
+    @face_video_analysis.save!
   end
 
   def show_emotions_percentage
@@ -64,6 +72,6 @@ class FaceVideoAnalysesController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def face_video_analysis_params
-    params.require(:face_video_analysis).permit(:notes,:case_id,:criminal_id,:enabled)
+    params.require(:face_video_analysis).permit(:notes,:case_id,:criminal_id,:enabled,:logs)
   end
 end

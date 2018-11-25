@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_07_145840) do
+ActiveRecord::Schema.define(version: 2018_11_25_191350) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,8 +57,18 @@ ActiveRecord::Schema.define(version: 2018_11_07_145840) do
     t.text "notable_moments", default: [], array: true
     t.text "duration"
     t.text "lesser_emotion"
+    t.string "logs", default: [], array: true
     t.index ["case_id"], name: "index_face_video_analyses_on_case_id"
     t.index ["criminal_id"], name: "index_face_video_analyses_on_criminal_id"
+  end
+
+  create_table "markers", force: :cascade do |t|
+    t.text "text"
+    t.decimal "time"
+    t.bigint "face_video_analysis_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["face_video_analysis_id"], name: "index_markers_on_face_video_analysis_id"
   end
 
   create_table "settings", force: :cascade do |t|
@@ -73,4 +83,5 @@ ActiveRecord::Schema.define(version: 2018_11_07_145840) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "markers", "face_video_analyses"
 end

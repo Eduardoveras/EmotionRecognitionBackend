@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  note: MyText
+  time: 9.99
+  face_video_analysis: one
+
+two:
+  note: MyText
+  time: 9.99
+  face_video_analysis: two
