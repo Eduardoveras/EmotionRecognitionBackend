@@ -72,6 +72,6 @@ class FaceVideoAnalysesController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def face_video_analysis_params
-    params.require(:face_video_analysis).permit(:notes,:case_id,:criminal_id,:enabled,:logs)
+    params.require(:face_video_analysis).permit(:notes,:case_id,:criminal_id,:enabled,:logs,:rating)
   end
 end
