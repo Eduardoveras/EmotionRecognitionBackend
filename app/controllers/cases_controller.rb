@@ -8,6 +8,11 @@ class CasesController < ApplicationController
     render json: @cases
   end
 
+  def links
+    render json: Case.select(:link,:id)
+
+  end
+
   # GET /cases/1
   def show
     #render json: @case.to_json(:include => :face_video_analysis)
