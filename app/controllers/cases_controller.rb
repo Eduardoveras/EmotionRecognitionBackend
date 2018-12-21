@@ -53,6 +53,6 @@ end
 
     # Only allow a trusted parameter "white list" through.
     def case_params
-      params.require(:case).permit(:face_video_analysis_id, :notes,:enabled)
+      params.require(:case).permit(:face_video_analysis_id, :notes,:enabled, :link)
     end
 end
