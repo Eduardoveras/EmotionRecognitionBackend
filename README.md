@@ -1,1 +1,1 @@
-# EmotionRecognitionBackend
+# EmotionRecognitionBackend (**Deprecated/not-mantained**)
